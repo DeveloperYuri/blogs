@@ -24,7 +24,8 @@
                     </div>
                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                 </div>
-                <a href="" class="btn btn-primary px-4">Join Class</a>
+                <a href="{{ url('login')}}" class="btn btn-primary px-4">login</a>
+                <a href="{{ url('register')}}" class="btn btn-primary px-4" style="margin-left: 8px">Register</a>
             </div>
         </nav>
     </div>
