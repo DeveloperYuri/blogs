@@ -51,7 +51,7 @@
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
                   <img src="{{ asset('assets/img/logo.png') }}" alt="">
-                  <span class="d-none d-lg-block">NiceAdmin</span>
+                  <span class="d-none d-lg-block">Blog</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -64,6 +64,7 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
+                  @include('layouts._message')
                   <form class="row g-3 needs-validation" novalidate>
 
                     <div class="col-12">

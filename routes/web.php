@@ -9,6 +9,8 @@ Route::get('/', [HomeController::class, 'home']);
 Route::get('login', [AuthController::class, 'login']);
 Route::get('register', [AuthController::class, 'register']);
 
+Route::get('verify/{token}', [AuthController::class, 'verify']);
+
 Route::post('register', [AuthController::class, 'create_user']);
 
 Route::get('forgot-password', [AuthController::class, 'forgot']);
