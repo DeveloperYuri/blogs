@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,7 @@ Route::post('forgot-password', [AuthController::class, 'forgot_password']);
 
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'post_reset']);
+
+Route::get('panel/dashboard', [DashboardController::class, 'dashboard']);
+
                                                   
