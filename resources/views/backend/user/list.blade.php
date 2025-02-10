@@ -8,13 +8,14 @@
         <div class="row">
             <div class="col-lg-12">
 
+                @include('layouts._message')
+
                 <div class="card">
+
                     <div class="card-body">
                         <h5 class="card-title">User List
                             <a href="{{ url('panel/user/add')}}" class="btn btn-primary" style="float: right; margin-top:-12px">Add New</a>
                         </h5>
-
-                        @include('layouts._message')
 
                         <!-- Table with stripped rows -->
                         <table class="table table-striped">
@@ -40,7 +41,7 @@
                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at))  }}</td>
                                     <td>
                                         <a href="{{ url('panel/user/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="{{ url('panel/user/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                        <a onclick="return confirm('Are you sure you want delete record?')" href="{{ url('panel/user/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                                 @empty
