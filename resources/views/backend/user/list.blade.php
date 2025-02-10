@@ -11,14 +11,16 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">User List
-                            <a href="" class="btn btn-primary" style="float: right; margin-top:-12px">Add New</a>
+                            <a href="{{ url('panel/user/add')}}" class="btn btn-primary" style="float: right; margin-top:-12px">Add New</a>
                         </h5>
+
+                        @include('layouts._message')
 
                         <!-- Table with stripped rows -->
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Email Verified</th>
@@ -34,11 +36,11 @@
                                     <td>{{ $value->name }}</td>
                                     <td>{{ $value->email }}</td>
                                     <td>{{ !empty($value->email_verified_at) ? 'Yes' : 'No' }}</td>
-                                    <td>{{ !empty($value->status) ? 'Verified' : 'Not Verified' }}</td>
+                                    <td>{{ !empty($value->status) ? 'Active' : 'InActive' }}</td>
                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at))  }}</td>
                                     <td>
-                                        <a href="" class="btn btn-primary btn-sm">Edit</a>
-                                        <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{{ url('panel/user/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('panel/user/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                                 @empty
