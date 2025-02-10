@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">User List
-                            <a href="" class="btn btn-primary">Add New</a>
+                            <a href="" class="btn btn-primary" style="float: right; margin-top:-12px">Add New</a>
                         </h5>
 
                         <!-- Table with stripped rows -->
@@ -20,50 +20,37 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Position</th>
-                                    <th scope="col">Age</th>
-                                    <th scope="col">Start Date</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Email Verified</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Created Date</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @forelse ($getRecord as $value)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Brandon Jacob</td>
-                                    <td>Designer</td>
-                                    <td>28</td>
-                                    <td>2016-05-25</td>
+                                    <th scope="row">{{ $value->id }}</th>
+                                    <td>{{ $value->name }}</td>
+                                    <td>{{ $value->email }}</td>
+                                    <td>{{ !empty($value->email_verified_at) ? 'Yes' : 'No' }}</td>
+                                    <td>{{ !empty($value->status) ? 'Verified' : 'Not Verified' }}</td>
+                                    <td>{{ date('d-m-Y H:i A', strtotime($value->created_at))  }}</td>
+                                    <td>
+                                        <a href="" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Bridie Kessler</td>
-                                    <td>Developer</td>
-                                    <td>35</td>
-                                    <td>2014-12-05</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Ashleigh Langosh</td>
-                                    <td>Finance</td>
-                                    <td>45</td>
-                                    <td>2011-08-12</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Angus Grady</td>
-                                    <td>HR</td>
-                                    <td>34</td>
-                                    <td>2012-06-11</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Raheem Lehner</td>
-                                    <td>Dynamic Division Officer</td>
-                                    <td>47</td>
-                                    <td>2011-04-19</td>
-                                </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="100%">Record Not Found</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
+
+                        {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
 
                     </div>
                 </div>
