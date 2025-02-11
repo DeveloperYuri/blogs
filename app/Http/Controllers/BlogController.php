@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 class BlogController extends Controller
 {
     public function blog(){
+       // $data['getRecord'] = BlogModel::getRecord();
         return view('backend.blog.list');
     }
 
