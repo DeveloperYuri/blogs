@@ -11,6 +11,10 @@ class CategoryModel extends Model
 
     protected $table = 'category';
 
+    static public function getSingle($id){
+        return CategoryModel::find($id);
+    }
+
     static public function getRecord(){
         return self::select('category.*')
         ->where('is_delete', '=', 0)

@@ -13,8 +13,8 @@
                 <div class="card">
 
                     <div class="card-body">
-                        <h5 class="card-title">User List
-                            <a href="{{ url('panel/user/add')}}" class="btn btn-primary" style="float: right; margin-top:-12px">Add New</a>
+                        <h5 class="card-title">Category List
+                            <a href="{{ url('panel/category/add')}}" class="btn btn-primary" style="float: right; margin-top:-12px">Add New</a>
                         </h5>
 
                         <!-- Table with stripped rows -->
@@ -46,8 +46,8 @@
                                     <td>{{ !empty($value->status) ? 'Active' : 'InActive' }}</td>
                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at))  }}</td>
                                     <td>
-                                        <a href="{{ url('panel/user/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                        <a onclick="return confirm('Are you sure you want delete record?')" href="{{ url('panel/user/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{{ url('panel/category/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a onclick="return confirm('Are you sure you want delete record?')" href="{{ url('panel/category/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
                                 @empty
