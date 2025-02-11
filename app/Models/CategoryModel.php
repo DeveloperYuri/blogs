@@ -21,4 +21,11 @@ class CategoryModel extends Model
         ->orderBy('id', 'desc')
         ->paginate(20);
     }
+
+    static public function getCategory(){
+        return self::select('category.*')
+        ->where('status', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->get();
+    }
 }

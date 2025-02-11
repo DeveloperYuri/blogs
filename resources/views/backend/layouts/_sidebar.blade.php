@@ -18,14 +18,14 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="{{ url('panel/category/list')}}">
+        <a class="nav-link @if(Request::segment(2) != 'category') collapsed @endif" href="{{ url('panel/category/list')}}">
           <i class="bi bi-question-circle"></i>
           <span>Category</span>
         </a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-contact.html">
+        <a class="nav-link @if(Request::segment(2) != 'blog') collapsed @endif" href="{{ url('panel/blog/list')}}">
           <i class="bi bi-envelope"></i>
           <span>Blog</span>
         </a>
