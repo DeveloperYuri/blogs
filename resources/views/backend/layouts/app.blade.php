@@ -54,6 +54,7 @@
     @include('backend.layouts._footer')
 
     <!-- Vendor JS Files -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/chart.js/chart.umd.js') }}"></script>

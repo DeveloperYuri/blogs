@@ -1,6 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('style')
+    <link rel="stylesheet" href="{{ asset('assets/tagsinput/bootstrap-tagsinput.css') }}">
 @endsection
 
 @section('content')
@@ -27,7 +28,7 @@
                                 <select class="form-control" name="category_id" id="">
                                     <option value="">Select Category</option>
                                     @foreach ($getCategory as $value)
-                                        <option {{ ($getRecord->category_id == $value->id) ? 'selected' : '' }}
+                                        <option {{ $getRecord->category_id == $value->id ? 'selected' : '' }}
                                             value="{{ $value->id }}">{{ $value->name }}</option>
                                     @endforeach
                                 </select>
@@ -49,8 +50,16 @@
                             </div>
 
                             <div class="col-12">
+                                @php
+                                    $tags = '';
+                                    foreach ($getRecord->getTag as $value) {
+                                        $tags .= $value->name .',';
+                                    }
+                                @endphp
+
                                 <label for="inputNanme4" class="form-label">Tags</label>
-                                <input type="text" class="form-control" id="inputNanme4" value="{{ old('tags') }}"
+
+                                <input type="text" class="form-control" id="tags" value="{{ $tags }}"
                                     name="tags">
                             </div>
 
@@ -74,16 +83,20 @@
                             <div class="col-12">
                                 <label for="inputPassword4" class="form-label">Publish *</label>
                                 <select class="form-control" name="is_publish">
-                                    <option {{ ($getRecord->is_publish == 1) ? 'selected' : '' }} value="1">Yes</option>
-                                    <option {{ ($getRecord->is_publish == 0) ? 'selected' : '' }} value="0">No</option>
+                                    <option {{ $getRecord->is_publish == 1 ? 'selected' : '' }} value="1">Yes
+                                    </option>
+                                    <option {{ $getRecord->is_publish == 0 ? 'selected' : '' }} value="0">No
+                                    </option>
                                 </select>
                             </div>
 
                             <div class="col-12">
                                 <label for="inputPassword4" class="form-label">Status *</label>
                                 <select class="form-control" name="status">
-                                    <option {{ ($getRecord->status == 1) ? 'selected' : '' }} value="1">Active</option>
-                                    <option {{ ($getRecord->status == 0) ? 'selected' : '' }} value="0">InActive</option>
+                                    <option {{ $getRecord->status == 1 ? 'selected' : '' }} value="1">Active
+                                    </option>
+                                    <option {{ $getRecord->status == 0 ? 'selected' : '' }} value="0">InActive
+                                    </option>
                                 </select>
                             </div>
 
@@ -101,4 +114,9 @@
 @endsection
 
 @section('script')
+    <script src="{{ asset('assets/tagsinput/bootstrap-tagsinput.js') }}"></script>
+
+    <script type="text/javascript">
+        $("#tags").tagsinput();
+    </script>
 @endsection

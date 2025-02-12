@@ -34,4 +34,9 @@ class BlogModel extends Model
             return "";
         }
     }
+
+    public function getTag()
+    {
+        return $this->hasMany(BlogTagsModel::class, 'blog_id');
+    }
 }

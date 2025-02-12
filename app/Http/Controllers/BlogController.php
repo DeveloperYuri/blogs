@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogModel;
+use App\Models\BlogTagsModel;
 use App\Models\CategoryModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,6 +96,8 @@ class BlogController extends Controller
         }
 
         $save->save();
+
+        BlogTagsModel::InserDeleteTag($save->id, $request->tags);
 
         return redirect('panel/blog/list')->with('success', 'Blog successfuly updated');
     }

@@ -1,6 +1,7 @@
 @extends('backend.layouts.app')
 
 @section('style')
+<link rel="stylesheet" href="{{ asset('assets/tagsinput/bootstrap-tagsinput.css')}}">
 @endsection
 
 @section('content')
@@ -45,7 +46,7 @@
 
                             <div class="col-12">
                                 <label for="inputNanme4" class="form-label">Tags</label>
-                                <input type="text" class="form-control" id="inputNanme4" value="{{ old('tags') }}"
+                                <input type="text" class="form-control" id="tags" value="{{ old('tags') }}"
                                     name="tags">
                             </div>
 
@@ -96,5 +97,9 @@
 @endsection
 
 @section('script')
-
+    <script src="{{ asset('assets/tagsinput/bootstrap-tagsinput.js')}}"></script>
+    
+    <script type="text/javascript">
+        $("#tags").tagsinput();
+    </script>
 @endsection
