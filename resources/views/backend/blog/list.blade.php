@@ -22,22 +22,50 @@
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Slug</th>
+                                    <th scope="col">Image</th>
+                                    <th scope="col">Username</th>
                                     <th scope="col">Title</th>
-                                    <th scope="col">Meta Title</th>
+                                    <th scope="col">Category</th>
                                     <th scope="col">Meta Description</th>
                                     <th scope="col">Meta Keywords</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Publish</th>
                                     <th scope="col">Created Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @forelse ($getRecord as $value)
+                                <tr>
+                                    <th scope="row">{{ $value->id }}</th>
+                                    <td>
+                                        @if (!empty($value->getImage()))
+                                        <img src="{{ $value->getImage() }}" alt="" style="height: 100px; width:100px">
+                                        @endif
+                                    </td>
+                                    <td>{{ $value->user_name }}</td>
+                                    <td>{{ $value->title }}</td>
+                                    <td>{{ $value->category_name }}</td>
+                                    <td>{{ $value->meta_description }}</td>
+                                    <td>{{ $value->meta_keywords }}</td>
+                                    <td>{{ !empty($value->status) ? 'Active' : 'InActive' }}</td>
+                                    <td>{{ !empty($value->is_publish) ? 'Yes' : 'No' }}</td>
+                                    <td>{{ date('d-m-Y H:i A', strtotime($value->created_at))  }}</td>
+                                    <td>
+                                        <a href="{{ url('panel/blog/edit/'.$value->id)}}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a onclick="return confirm('Are you sure you want delete record?')" href="{{ url('panel/blog/delete/'.$value->id)}}" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="100%">Record Not Found</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                         <!-- End Table with stripped rows -->
+
+                        {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
 
                     </div>
                 </div>
