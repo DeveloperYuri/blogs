@@ -201,7 +201,9 @@
                             @endif
                           
                             <div class="pl-3">
-                                <h5 class="">{{ $recent->title }}</h5>
+                              <a href="{{ url($recent->slug) }}">
+                                <h5 class="">{!! strip_tags(Str::substr($recent->title,0,20)) !!}...</h5>
+                              </a>
                                 <div class="d-flex">
                                     <small class="mr-3"><i class="fa fa-user text-primary"></i> {{ $recent->user_name }}</small>
                                     <small class="mr-3"><i class="fa fa-folder text-primary"></i> {{ $recent->category_name }}</small>
