@@ -60,4 +60,7 @@ Route::group(['middleware' => 'adminuser'], function () {
 
 });
 
+Route::get('{slug}', [HomeController::class, 'blogdetail']);
+
+
                                                   

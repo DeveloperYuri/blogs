@@ -29,7 +29,7 @@
                         <div class="card border-0 shadow-sm mb-2">
                             <img class="card-img-top mb-2" src="{{ $value->getImage() }}" style="height: 233px; width:100%;object-fit: cover;" alt="" />
                             <div class="card-body bg-light text-center p-4">
-                              <a href="{{ url('blog/'.$value->slug)}}">
+                              <a href="{{ url($value->slug)}}">
                                 <h4 class="">
                                   {!! strip_tags(Str::substr($value->title,0,40)) !!}
                                 </h4>
@@ -42,7 +42,7 @@
                                 <p>
                                     {!! strip_tags(Str::substr($value->description,0,170)) !!}...
                                 </p>
-                                <a href="{{ url('blog/'.$value->slug)}}" class="btn btn-primary px-4 mx-auto my-2">Read More</a>
+                                <a href="{{ url($value->slug)}}" class="btn btn-primary px-4 mx-auto my-2">Read More</a>
                             </div>
                         </div>
                     </div>

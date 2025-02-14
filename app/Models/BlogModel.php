@@ -17,6 +17,18 @@ class BlogModel extends Model
         return self::find($id);
     }
 
+    static public function getRecordSlug($slug){
+        return self::select('blog.*', 'users.name as user_name', 'category.name as category_name' )
+        ->join('users', 'users.id', '=', 'blog.user_id')
+        ->join('category', 'category.id', '=', 'blog.category_id')
+        ->where('blog.status', '=', 1)
+        ->where('blog.is_publish', '=', 1)
+        ->where('blog.is_delete', '=', 0)
+        ->where('blog.slug', '=', $slug)
+        ->first();
+    }
+
+    
     static public function getRecordFront(){
         return self::select('blog.*', 'users.name as user_name', 'category.name as category_name' )
         ->join('users', 'users.id', '=', 'blog.user_id')
@@ -25,7 +37,7 @@ class BlogModel extends Model
         ->where('blog.is_publish', '=', 1)
         ->where('blog.is_delete', '=', 0)
         ->orderBy('blog.id', 'desc')
-        ->paginate(1);
+        ->paginate(10);
     }
 
     static public function getRecord(){

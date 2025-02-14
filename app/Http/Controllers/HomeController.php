@@ -25,6 +25,17 @@ class HomeController extends Controller
         $data['getRecord'] = BlogModel::getRecordFront();
         return view('blog', $data);
     }
+    public function blogdetail($slug){
+        $getRecord = BlogModel::getRecordSlug($slug);
+        
+        if (!empty($getRecord)) {
+            $data['getRecord'] = $getRecord;
+            return view('blog_detail', $data);
+        }
+        else {
+            abort(404);
+        }
+    }
     public function contact(){
         return view('contact');
     }
