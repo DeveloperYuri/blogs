@@ -28,50 +28,31 @@
 
 
                     <!-- Related Post -->
-                    <div class="mb-5 mx-n3">
-                        <h2 class="mb-4 ml-3">Related Post</h2>
-                        <div class="owl-carousel post-carousel position-relative">
-                            <div class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mx-3">
-                                <img class="img-fluid" src="{{ asset('front/img/post-1.jpg') }}"
-                                    style="width: 80px; height: 80px" />
-                                <div class="pl-3">
-                                    <h5 class="">Diam amet eos at no eos</h5>
-                                    <div class="d-flex">
-                                        <small class="mr-3"><i class="fa fa-user text-primary"></i> Admin</small>
-                                        <small class="mr-3"><i class="fa fa-folder text-primary"></i> Web
-                                            Design</small>
-                                        <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
+                    @if (!empty($getRelatedPost->count()))
+                        <div class="mb-5 mx-n3">
+                            <h2 class="mb-4 ml-3">Related Post</h2>
+                            <div class="owl-carousel post-carousel position-relative">
+                                @foreach ($getRelatedPost as $related)
+                                    <div class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mx-3">
+                                        <img class="img-fluid" src="{{ $related->getImage() }}"
+                                            style="width: 80px; height: 80px" />
+                                        <div class="pl-3">
+                                            <a href="{{ url($related->slug) }}">
+                                                <h5 class="">{!! strip_tags(Str::substr($related->title, 0, 20)) !!}...</h5>
+                                            </a>
+                                            <div class="d-flex">
+                                                <small class="mr-3"><i class="fa fa-user text-primary"></i>
+                                                    {{ $related->user_name }}</small>
+                                                <small class="mr-3"><i
+                                                        class="fa fa-folder text-primary"></i>{{ $related->category_name }}</small>
+                                                <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mx-3">
-                                <img class="img-fluid" src="{{ asset('front/img/post-2.jpg') }}"
-                                    style="width: 80px; height: 80px" />
-                                <div class="pl-3">
-                                    <h5 class="">Diam amet eos at no eos</h5>
-                                    <div class="d-flex">
-                                        <small class="mr-3"><i class="fa fa-user text-primary"></i> Admin</small>
-                                        <small class="mr-3"><i class="fa fa-folder text-primary"></i> Web
-                                            Design</small>
-                                        <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mx-3">
-                                <img class="img-fluid" src="{{ asset('front/img/post-3.jpg') }}"
-                                    style="width: 80px; height: 80px" />
-                                <div class="pl-3">
-                                    <h5 class="">Diam amet eos at no eos</h5>
-                                    <div class="d-flex">
-                                        <small class="mr-3"><i class="fa fa-user text-primary"></i> Admin</small>
-                                        <small class="mr-3"><i class="fa fa-folder text-primary"></i> Web
-                                            Design</small>
-                                        <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
-                    </div>
+                    @endif
 
                     <!-- Comment List -->
                     <div class="mb-5">
@@ -196,17 +177,19 @@
                     @foreach ($getRecentPost as $recent)
                         <div class="d-flex align-items-center bg-light shadow-sm rounded overflow-hidden mb-3">
                             @if (!empty($recent->getImage()))
-                            <img class="img-fluid" src="{{ $recent->getImage() }}"
-                            style="width: 80px; height: 80px" /> 
+                                <img class="img-fluid" src="{{ $recent->getImage() }}"
+                                    style="width: 80px; height: 80px" />
                             @endif
-                          
+
                             <div class="pl-3">
-                              <a href="{{ url($recent->slug) }}">
-                                <h5 class="">{!! strip_tags(Str::substr($recent->title,0,20)) !!}...</h5>
-                              </a>
+                                <a href="{{ url($recent->slug) }}">
+                                    <h5 class="">{!! strip_tags(Str::substr($recent->title, 0, 20)) !!}...</h5>
+                                </a>
                                 <div class="d-flex">
-                                    <small class="mr-3"><i class="fa fa-user text-primary"></i> {{ $recent->user_name }}</small>
-                                    <small class="mr-3"><i class="fa fa-folder text-primary"></i> {{ $recent->category_name }}</small>
+                                    <small class="mr-3"><i class="fa fa-user text-primary"></i>
+                                        {{ $recent->user_name }}</small>
+                                    <small class="mr-3"><i class="fa fa-folder text-primary"></i>
+                                        {{ $recent->category_name }}</small>
                                     <small class="mr-3"><i class="fa fa-comments text-primary"></i> 0 </small>
                                 </div>
                             </div>
@@ -221,17 +204,16 @@
                 </div>
 
                 <!-- Tag Cloud -->
-                <div class="mb-5">
-                    <h2 class="mb-4">Tag Cloud</h2>
-                    <div class="d-flex flex-wrap m-n1">
-                        <a href="" class="btn btn-outline-primary m-1">Design</a>
-                        <a href="" class="btn btn-outline-primary m-1">Development</a>
-                        <a href="" class="btn btn-outline-primary m-1">Marketing</a>
-                        <a href="" class="btn btn-outline-primary m-1">SEO</a>
-                        <a href="" class="btn btn-outline-primary m-1">Writing</a>
-                        <a href="" class="btn btn-outline-primary m-1">Consulting</a>
+                @if (!empty($getRecord->getTag->count()))
+                    <div class="mb-5">
+                        <h2 class="mb-4">Tag Cloud</h2>
+                        <div class="d-flex flex-wrap m-n1">
+                            @foreach ($getRecord->getTag as $tag)
+                                <a href="" class="btn btn-outline-primary m-1">{{$tag->name}}</a>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <!-- Single Image -->
                 <div class="mb-5">

@@ -38,6 +38,7 @@ class HomeController extends Controller
         if (!empty($getRecord)) {
             $data['getCategory'] = CategoryModel::getCategory();
             $data['getRecentPost'] = BlogModel::getRecentPost();
+            $data['getRelatedPost'] = BlogModel::getRelatedPost($getRecord->category_id, $getRecord->id);
             $data['getRecord'] = $getRecord;
             return view('blog_detail', $data);
         } else {
