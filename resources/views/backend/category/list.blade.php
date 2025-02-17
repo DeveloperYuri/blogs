@@ -28,6 +28,7 @@
                                     <th scope="col">Meta Title</th>
                                     <th scope="col">Meta Description</th>
                                     <th scope="col">Meta Keywords</th>
+                                    <th scope="col">Menu</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Created Date</th>
                                     <th scope="col">Action</th>
@@ -43,6 +44,7 @@
                                     <td>{{ $value->meta_title }}</td>
                                     <td>{{ $value->meta_description }}</td>
                                     <td>{{ $value->meta_keywords }}</td>
+                                    <td>{{ !empty($value->is_menu) ? 'Yes' : 'No' }}</td>
                                     <td>{{ !empty($value->status) ? 'Active' : 'InActive' }}</td>
                                     <td>{{ date('d-m-Y H:i A', strtotime($value->created_at))  }}</td>
                                     <td>

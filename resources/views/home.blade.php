@@ -18,7 +18,7 @@
             <a href="" class="btn btn-secondary mt-1 py-3 px-5">Learn More</a>
           </div>
           <div class="col-lg-6 text-center text-lg-right">
-            <img class="img-fluid mt-5" src="{{ asset('front/img/header.png') }}" alt="" />
+            <img class="img-fluid mt-5" src="{{ asset('front/img/') }}" alt="" />
           </div>
         </div>
       </div>

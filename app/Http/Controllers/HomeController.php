@@ -33,16 +33,23 @@ class HomeController extends Controller
     }
     public function blogdetail($slug)
     {
-        $getRecord = BlogModel::getRecordSlug($slug);
+        $getCategory = CategoryModel::getSlug($slug);
 
-        if (!empty($getRecord)) {
-            $data['getCategory'] = CategoryModel::getCategory();
-            $data['getRecentPost'] = BlogModel::getRecentPost();
-            $data['getRelatedPost'] = BlogModel::getRelatedPost($getRecord->category_id, $getRecord->id);
-            $data['getRecord'] = $getRecord;
-            return view('blog_detail', $data);
+        if (!empty($getCategory)) {
+            $data['getRecord'] = BlogModel::getRecordFrontCategory($getCategory->id);
+            return view('blog', $data);
         } else {
-            abort(404);
+            $getRecord = BlogModel::getRecordSlug($slug);
+
+            if (!empty($getRecord)) {
+                $data['getCategory'] = CategoryModel::getCategory();
+                $data['getRecentPost'] = BlogModel::getRecentPost();
+                $data['getRelatedPost'] = BlogModel::getRelatedPost($getRecord->category_id, $getRecord->id);
+                $data['getRecord'] = $getRecord;
+                return view('blog_detail', $data);
+            } else {
+                abort(404);
+            }
         }
     }
     public function contact()

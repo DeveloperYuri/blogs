@@ -36,4 +36,20 @@ class CategoryModel extends Model
         ->where('blog.is_delete', '=', 0)
         ->count();
     }
+
+    static public function getCategoryMenu(){
+        return self::select('category.*')
+        ->where('status', '=', 1)
+        ->where('is_menu', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->get();
+    }
+
+    static public function getSlug($slug){
+        return self::select('category.*')
+        ->where('slug', '=', $slug)
+        ->where('status', '=', 1)
+        ->where('is_delete', '=', 0)
+        ->first();
+    }
 }

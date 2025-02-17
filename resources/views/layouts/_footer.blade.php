@@ -10,7 +10,7 @@
             style="font-size: 40px; line-height: 40px"
           >
             <i class="flaticon-043-teddy-bear"></i>
-            <span class="text-white">KidKinder</span>
+            <span class="text-white">YURI</span>
           </a>
           <p>
             Labore dolor amet ipsum ea, erat sit ipsum duo eos. Volup amet ea

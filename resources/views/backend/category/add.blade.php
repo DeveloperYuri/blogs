@@ -53,6 +53,14 @@
                             <hr>
 
                             <div class="col-12">
+                                <label for="inputPassword4" class="form-label">Menu *</label>
+                                <select class="form-control" name="is_menu">
+                                    <option value="0">No</option>
+                                    <option value="1">Yes</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
                                 <label for="inputPassword4" class="form-label">Status *</label>
                                 <select class="form-control" name="status">
                                     <option value="1">Active</option>
