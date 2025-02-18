@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -57,6 +58,13 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::get('panel/blog/edit/{id}', [BlogController::class, 'edit_blog']);
     Route::post('panel/blog/edit/{id}', [BlogController::class, 'update_blog']);
     Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_blog']);
+
+    Route::get('panel/page/list', [PageController::class, 'page']);
+    Route::get('panel/page/add', [PageController::class, 'add_page']);
+    Route::post('panel/page/add', [PageController::class, 'insert_page']);
+    Route::get('panel/page/edit/{id}', [PageController::class, 'edit_page']);
+    Route::post('panel/page/edit/{id}', [PageController::class, 'update_page']);
+    Route::get('panel/page/delete/{id}', [PageController::class, 'delete_page']);
 
 });
 

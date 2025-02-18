@@ -32,6 +32,13 @@
       </li>
 
       <li class="nav-item">
+        <a class="nav-link @if(Request::segment(2) != 'page') collapsed @endif" href="{{ url('panel/page/list')}}">
+          <i class="bi bi-envelope"></i>
+          <span>Page</span>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a class="nav-link collapsed" href="pages-register.html">
           <i class="bi bi-card-list"></i>
           <span>Help</span>
