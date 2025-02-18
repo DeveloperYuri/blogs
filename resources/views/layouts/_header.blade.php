@@ -13,15 +13,12 @@
                     $getCategoryHeader = App\Models\CategoryModel::getCategoryMenu();
                 @endphp
                 <div class="navbar-nav font-weight-bold mx-auto py-0">
-                    <a href="{{ url('') }}" class="nav-item nav-link active">Home</a>
+                    <a href="{{ url('') }}" class="nav-item nav-link @if(Request::segment(1) == '') active @endif">Home</a>
                     @foreach ($getCategoryHeader as $CategoryHeader)
-                    <a href="{{ url($CategoryHeader->slug) }}" class="nav-item nav-link active">{{ $CategoryHeader->name}}</a>
+                    <a href="{{ url($CategoryHeader->slug) }}" class="nav-item nav-link @if(Request::segment(1) == $CategoryHeader->slug) active @endif ">{{ $CategoryHeader->name}}</a>
                     @endforeach
-
-                    <a href="{{ url('blog') }}" class="nav-item nav-link active">Blog</a>
-
-                    
                 </div>
+                
                 <a href="{{ url('login')}}" class="btn btn-primary px-4">login</a>
                 <a href="{{ url('register')}}" class="btn btn-primary px-4" style="margin-left: 8px">Register</a>
             </div>

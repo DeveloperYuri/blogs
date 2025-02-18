@@ -55,9 +55,9 @@ class HomeController extends Controller
                 
                 $data['getRecord'] = $getRecord;
 
-                $data['meta_title'] = $getCategory->meta_title;
-                $data['meta_description'] = $getCategory->meta_description;
-                $data['meta_keywords'] = $getCategory->meta_keywords;
+                $data['meta_title'] = $getRecord->meta_title;
+                $data['meta_description'] = $getRecord->meta_description;
+                $data['meta_keywords'] = $getRecord->meta_keywords;
 
                 return view('blog_detail', $data);
             } else {

@@ -34,7 +34,7 @@
                                     <small class="mr-3"><i class="fa fa-user text-primary"></i>
                                         {{ $value->user_name }}</small>
                                     <small class="mr-3"><i class="fa fa-folder text-primary"></i>
-                                        {{ $value->category_name }}</small>
+                                        <a href="{{ url($value->category_slug) }}">{{ $value->category_name }}</small></a>
                                     <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
                                 </div>
                                 <p>
