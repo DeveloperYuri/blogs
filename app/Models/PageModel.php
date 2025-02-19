@@ -20,4 +20,9 @@ class PageModel extends Model
     {
         return self::get();
     }
+
+    static public function getSlug($slug)
+    {
+        return PageModel::where('slug', '=', $slug)->first();
+    }
 }

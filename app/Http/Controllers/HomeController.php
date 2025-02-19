@@ -4,34 +4,72 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogModel;
 use App\Models\CategoryModel;
+use App\Models\PageModel;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        $data['meta_title'] = 'Blog';
-        return view('home');
+        $getPage = PageModel::getSlug('home');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+
+        return view('home', $data);
     }
 
     public function about()
     {
-        return view('about');
+        $getPage = PageModel::getSlug('about');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+
+        return view('about', $data);
     }
 
     public function team()
     {
-        return view('team');
+        $getPage = PageModel::getSlug('team');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+        
+        return view('team', $data);
     }
+
     public function gallery()
     {
-        return view('gallery');
+        $getPage = PageModel::getSlug('gallery');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+
+        return view('gallery', $data);
     }
+
     public function blog()
     {
+        $getPage = PageModel::getSlug('blog');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+        
         $data['getRecord'] = BlogModel::getRecordFront();
         return view('blog', $data);
     }
+
+    public function contact()
+    {
+        $getPage = PageModel::getSlug('contact');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+
+        return view('contact', $data);
+    }
+
     public function blogdetail($slug)
     {
         $getCategory = CategoryModel::getSlug($slug);
@@ -52,7 +90,7 @@ class HomeController extends Controller
                 $data['getCategory'] = CategoryModel::getCategory();
                 $data['getRecentPost'] = BlogModel::getRecentPost();
                 $data['getRelatedPost'] = BlogModel::getRelatedPost($getRecord->category_id, $getRecord->id);
-                
+
                 $data['getRecord'] = $getRecord;
 
                 $data['meta_title'] = $getRecord->meta_title;
@@ -65,8 +103,5 @@ class HomeController extends Controller
             }
         }
     }
-    public function contact()
-    {
-        return view('contact');
-    }
+    
 }

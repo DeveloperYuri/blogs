@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\ForgotPasswordMail;
 use App\Mail\RegisterMail;
+use App\Models\PageModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,17 +17,29 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('auth.login');
+        $getPage = PageModel::getSlug('login');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+        return view('auth.login', $data);
     }
 
     public function register()
     {
-        return view('auth.register');
+        $getPage = PageModel::getSlug('register');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+        return view('auth.register', $data);
     }
 
     public function forgot()
     {
-        return view('auth.forgot');
+        $getPage = PageModel::getSlug('forgot');
+        $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+        $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+        $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+        return view('auth.forgot', $data);
     }
 
     public function reset($token)
@@ -34,21 +47,25 @@ class AuthController extends Controller
         $user = User::where('remember_token', '=', $token)->first();
 
         if (!empty($user)) {
+            $getPage = PageModel::getSlug('reset');
+            $data['meta_title'] = !empty($getPage) ? $getPage->meta_title : '';
+            $data['meta_description'] = !empty($getPage) ? $getPage->meta_description : '';
+            $data['meta_keywords'] = !empty($getPage) ? $getPage->meta_keywords : '';
+
             $data['user'] = $user;
-            return view('auth.reset');
+            return view('auth.reset', $data);
         } else {
             abort(404);
         }
     }
 
-    
+
     public function post_reset($token, Request $request)
     {
-        
+
         $user = User::where('remember_token', '=', $token)->first();
 
-        if (!empty($user)) 
-        {
+        if (!empty($user)) {
             if ($request->password == $request->cpassword) {
                 $user->password = Hash::make($request->password);
                 if (empty($user->email_verified_at)) {
@@ -58,14 +75,12 @@ class AuthController extends Controller
                 $user->save();
 
                 return redirect('login')->with('success', "Password successfuly reset");
-
             } else {
                 return redirect()->back()->with('error', "Password and confirm password does not match");
             }
         } else {
             abort(404);
         }
-        
     }
 
     public function forgot_password(Request $request)
@@ -146,7 +161,8 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         Auth::logout();
         return redirect('login');
     }

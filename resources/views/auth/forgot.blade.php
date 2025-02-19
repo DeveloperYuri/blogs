@@ -5,9 +5,15 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Forgot Password</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <title>{{ !empty($meta_title) ? $meta_title : '' }}</title>
+    @if (!empty($meta_keywords))
+        <meta content="{{ $meta_keywords }}" name="keywords" />
+    @endif
+
+    @if (!empty($meta_description))
+        <meta content="{{ $meta_description }}" name="description" />
+    @endif
+
 
   <!-- Favicons -->
   <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
