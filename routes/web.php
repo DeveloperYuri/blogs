@@ -71,6 +71,7 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_blog']);
 
     Route::post('blog-comment-submit', [HomeController::class, 'BlogCommentSubmit']);
+    Route::post('blog-comment-reply-submit', [HomeController::class, 'BlogCommentReplySubmit']);
 
 });
 

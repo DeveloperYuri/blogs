@@ -55,6 +55,13 @@
     <script src="{{ asset('front/lib/isotope/isotope.pkgd.min.js') }}"></script>
     <script src="{{ asset('front/lib/lightbox/js/lightbox.min.js') }}"></script>
 
+    <script type="text/javascript">
+        $('.ReplyOpen').click(function() {
+            var id = $(this).attr('id');
+            $('.ShowReply' + id).toggle();
+        });
+    </script>
+
     <!-- Template Javascript -->
     <script src="{{ asset('front/js/main.js') }}"></script>
 </body>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogCommentModel;
+use App\Models\BlogCommentReplyModel;
 use App\Models\BlogModel;
 use App\Models\CategoryModel;
 use App\Models\PageModel;
@@ -116,6 +117,18 @@ class HomeController extends Controller
 
         return redirect()->back()->with('success', "Your Comment Successfully");
         
+    }
+
+    public function BlogCommentReplySubmit(Request $request)
+    {
+        $save = new BlogCommentReplyModel;
+        $save->user_id = Auth::user()->id;
+        $save->comment_id = $request->comment_id;
+        $save->comment = $request->comment;
+        $save->save();
+
+        return redirect()->back()->with('success', "Your Reply Successfully");
+
     }
     
 }
