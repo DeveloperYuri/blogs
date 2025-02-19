@@ -21,7 +21,7 @@ class AuthMiddleware
         }
         else{
             Auth::logout();
-            return redirect(url(''));
+            return redirect(url('login'));
         }
     }
 }

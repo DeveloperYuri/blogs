@@ -35,7 +35,7 @@
                                         {{ $value->user_name }}</small>
                                     <small class="mr-3"><i class="fa fa-folder text-primary"></i>
                                         <a href="{{ url($value->category_slug) }}">{{ $value->category_name }}</small></a>
-                                    <small class="mr-3"><i class="fa fa-comments text-primary"></i> 15</small>
+                                    <small class="mr-3"><i class="fa fa-comments text-primary"></i> {{ $value->getCommentCount() }}</small>
                                 </div>
                                 <p>
                                     {!! strip_tags(Str::substr($value->description, 0, 170)) !!}...

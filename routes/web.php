@@ -69,6 +69,9 @@ Route::group(['middleware' => 'adminuser'], function () {
     Route::get('panel/blog/edit/{id}', [BlogController::class, 'edit_blog']);
     Route::post('panel/blog/edit/{id}', [BlogController::class, 'update_blog']);
     Route::get('panel/blog/delete/{id}', [BlogController::class, 'delete_blog']);
+
+    Route::post('blog-comment-submit', [HomeController::class, 'BlogCommentSubmit']);
+
 });
 
 Route::get('{slug}', [HomeController::class, 'blogdetail']);
