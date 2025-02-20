@@ -50,6 +50,13 @@
           @endif
 
           <li class="nav-item">
+              <a class="nav-link collapsed" href="{{ url('panel/change-password') }}">
+                  <i class="bi bi-key"></i>
+                  <span>Change Password</span>
+              </a>
+          </li>
+
+          <li class="nav-item">
               <a class="nav-link collapsed" href="pages-register.html">
                   <i class="bi bi-card-list"></i>
                   <span>Help</span>

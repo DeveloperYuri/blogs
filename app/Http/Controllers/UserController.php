@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -48,7 +49,7 @@ class UserController extends Controller
 
         request()->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            'email' => 'required|email|unique:users,email,' . $id,
         ]);
 
         $save = User::getSingle($id);
@@ -75,6 +76,27 @@ class UserController extends Controller
         return redirect()->back()->with('success', "User Succesfully Deleted");
     }
 
+    public function ChangePassword()
+    {
+        return view('backend.user.change_password');
+    }
 
+    public function UpdatePassword(Request $request)
+    {
+        $user = User::getSingle(Auth::user()->id);
 
+        if (Hash::check($request->old_password, $user->password)) {
+            if ($request->new_password == $request->confirm_password) {
+                $user->password = Hash::make($request->new_password);
+                $user->save();
+
+                return redirect()->back()->with('success', "Your password successfully update");
+
+            } else {
+                return redirect()->back()->with('error', "Confirm password does not match to new password");
+            }
+        } else {
+            return redirect()->back()->with('error', "Old password does not match");
+        }
+    }
 }
